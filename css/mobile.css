@@ -1,3 +1,8 @@
+h1 {
+    font-size : 3em;
+    text-align: center;
+}
+
 #diaporama {
     width : 980px;
     height : 480px;
@@ -5,14 +10,11 @@
     margin-right : auto;
     margin-left : auto;
     position: relative;
-    z-index: 0;
 }
 
 #pause {
     display: none;
     position: relative;
-    margin-right : auto;
-    margin-left : auto;
-    z-index: 100;
     color:black;
+    text-align: center;
 }

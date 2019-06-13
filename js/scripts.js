@@ -1,57 +1,55 @@
 $(document).ready(function(){
 
-    // Diaporama
-    let diapos = [
+    // Variables
+    let diapos = [ // liste des images du diaporama
         "<img src='img/photo1.jpg'>",
         "<img src='img/photo2.jpg'>",
         "<img src='img/photo3.jpg'>"
     ];
 
-    let diapoEnCours = 0;
-    let nbDiapos = diapos.length-1;
-    let arret = false;
+    let diapoEnCours = -1; // image affichée à l'instant t. On commence à 0. Incrément de 1 en début de boucle
+    let nbDiapos = diapos.length-1; // index de la dernière image
+    let boucle; // identifiant de la boucle principale
 
-    // Gestion de la souris pour arrêter / relancer le diaporama
-    $('#diaporama').hover(
-        function() { 
-            arret = true;
-            $('#pause').fadeIn(500);
-        },
-        function() { 
-            arret = false; 
-            $('#pause').fadeOut(500);
-            changeImage();
-         }
-    );
-
-    // Gestion des touches pour contrôler le diaporama
-    document.addEventListener("keydown",function(e){
-        switch (e.keyCode) {
-            case 37: // Flèche gauche
-                diapoEnCours--;
-                document.getElementById("diaporama").innerHTML = diapos[diapoEnCours];
-                break;
-            case 39: // Flèche droite
-                diapoEnCours++;
-                document.getElementById("diaporama").innerHTML = diapos[diapoEnCours];
-                break;
-            case 27: // Echap
-        }
-    })
-
-    // fonction principale qui change les diapos en boucle sauf si un clic souris a été détecté (arret === false)
+    // Gestion des touches pour contrôler le diaporama manuellement
+    function controlManuel(){
+        $(document).keyup(function(e){ // action au relâchement d'une touche
+            switch (e.keyCode) {
+                case 37: // Flèche gauche
+                    diapoEnCours--;
+                    if (diapoEnCours < 0) { diapoEnCours = 0}; // on bloque à la première diapo
+                    break;
+                case 39: // Flèche droite
+                    diapoEnCours++;
+                    if (diapoEnCours > nbDiapos) { diapoEnCours = nbDiapos }; // on bloque à la dernière
+                    break;
+            };
+            $('#diaporama').html(diapos[diapoEnCours]); // Affichage de l'image
+        });
+    };
+    
+    // fonction principale qui change les diapos en boucle
     function changeImage(){
-        if (diapoEnCours > nbDiapos){
-            diapoEnCours = 0;
-        };
-
-        if (arret===false){
-            document.getElementById("diaporama").innerHTML=diapos[diapoEnCours];
-            diapoEnCours++;
-            setTimeout(changeImage, 2000);
-        };
+        diapoEnCours++;
+        if (diapoEnCours > nbDiapos) { diapoEnCours = 0 };
+        $('#diaporama').html(diapos[diapoEnCours]); 
+        boucle = setTimeout(changeImage, 2000); // change les images toutes les 2s
     };
 
     // Premier lancement
     changeImage();
+
+    // Gestion de la souris pour arrêter / relancer le diaporama
+    $('#diaporama').hover(
+        function() { 
+            clearTimeout(boucle); // arrête le chargement des images
+            controlManuel(); // lance le gestionnaire d'événement sur les touches
+            $('#pause').fadeIn(500); // Affiche les contrôles
+        },
+        function() { 
+            $(document).off('keyup'); // Supprime le gestionnaire d'événement sur les touches
+            changeImage(); // relance le diaporama
+            $('#pause').fadeOut(500); // supprime l'affichage des contrôles
+         }
+    );
 });
