@@ -11,6 +11,7 @@ h1 {
     margin: auto;
     position: relative;
     color: #ffffff;
+    z-index: 1;
 }
 
 #left-arrow {
@@ -21,6 +22,7 @@ h1 {
     display: inline-block;
     height: 80px;
     overflow: hidden;
+    z-index:9999;
 }
 
 #right-arrow {
@@ -31,6 +33,7 @@ h1 {
     display: inline-block;
     height: 80px;
     overflow: hidden;
+    z-index:9999;
 }
 
 .icones-dark {
