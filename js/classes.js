@@ -25,12 +25,17 @@ class Diaporama  {
 
     // Gestion de la souris et du clavier : on stoppe si au-dessus du diapo
     executeManuel() {
-        $('#' + this.cible).hover(
+        $('#slider').hover(
             () => {
                 clearTimeout(this.boucleDiapo);
                 this.executeClavier();
+                $('#right-arrow').css('display','inline-block');
+                $('#left-arrow').css('display', 'inline-block');
+                this.executeSouris();
             },
             () => {
+                $('#right-arrow').css('display', 'none');
+                $('#left-arrow').css('display', 'none');
                 $(document).off('keyup');
                 this.executeDiaporama();
             }
@@ -46,17 +51,36 @@ class Diaporama  {
                     if (this.imageEnCours ==-1) {
                         this.imageEnCours = this.tableau.length -1;
                     };
-                    this.image.src = this.rep + this.tableau[this.imageEnCours];
                     break;
                 case 39: // Flèche droite
                     this.imageEnCours++;
                     if (this.imageEnCours == this.tableau.length) {
                         this.imageEnCours = 0;
                     };
-                    this.image.src = this.rep + this.tableau[this.imageEnCours];
                     break;
                 };
+                this.image.src = this.rep + this.tableau[this.imageEnCours];
         });
+    };
+    // Gestion de la souris
+    executeSouris() {
+        $('#left-arrow').click(() => {
+                this.imageEnCours--;
+                if (this.imageEnCours == -1) {
+                    this.imageEnCours = this.tableau.length - 1;
+                };
+                this.image.src = this.rep + this.tableau[this.imageEnCours];
+            }
+        );
+
+        $('#right-arrow').click(() => {
+            this.imageEnCours++;
+            if (this.imageEnCours == this.tableau.length) {
+                this.imageEnCours = 0;
+            };
+            this.image.src = this.rep + this.tableau[this.imageEnCours];
+        });
+
     };
 };
 

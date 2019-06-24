@@ -1,20 +1,43 @@
 h1 {
-    font-size : 3em;
+    font-size: 3em;
     text-align: center;
 }
 
-#diaporama {
-    width : 980px;
-    height : 480px;
-    top : 0px;
-    margin-right : auto;
-    margin-left : auto;
+#slider {
+    max-width: 980px;
+    max-height: 480px;
+    margin-top: 0px;
+    width: auto;
+    margin: auto;
     position: relative;
+    color: #ffffff;
 }
 
-#pause {
+#left-arrow {
+    position: absolute;
+    top: 45%;
+    left: 0;
+    font-size: 3.5em;
+    display: inline-block;
+    height: 80px;
+    overflow: hidden;
+}
+
+#right-arrow {
+    position: absolute;
+    top: 45%;
+    right: 0;
+    font-size: 3.5em;
+    display: inline-block;
+    height: 80px;
+    overflow: hidden;
+}
+
+.icones-dark {
+    color: rgba(85, 85, 85, .8);
+}
+
+#left-arrow,
+#right-arrow {
     display: none;
-    position: relative;
-    color:black;
-    text-align: center;
 }
