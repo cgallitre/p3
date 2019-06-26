@@ -7,11 +7,14 @@ h1 {
     margin: auto;
     position: relative;
     color: #ffffff;
-    user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
 }
 
-#diapo{
-    width:100%;
+#diapo {
+    width: 100%;
     margin: auto;
     max-height: 300px;
 }
@@ -47,6 +50,6 @@ h1 {
 
 #mapid {
     margin-top: 50px;
-    width : 70%;
+    width: 70%;
     height: 380px;
 }
