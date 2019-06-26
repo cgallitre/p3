@@ -9,7 +9,6 @@ function demarreDiapo(){
 
 function initialisation(){
     demarreDiapo();
-    let carte = new Map("mapid", 47.218371, -1.553621);
-
+    let maCarte = new Map("mapid", "Nantes", 47.218371, -1.553621);
 }
 window.addEventListener("load", initialisation, false);
