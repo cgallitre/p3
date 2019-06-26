@@ -24,15 +24,12 @@ class Map {
         }).addTo(map);
 
         // chargement des stations
+        let that = this;
         ajaxGet("https://api.jcdecaux.com/vls/v1/stations?contract=" + this.ville + "&apiKey=3a8b6dc2ac73396c5c2fb5135a07718936b00887", function (reponse) {
             let stations = JSON.parse(reponse);
             for (let station of stations) {
-                // let elt = document.createElement("li");
-                // elt.textContent = station.name;
-                // document.getElementById("listeStations").appendChild(elt);
-
-                // ajout des marqueurs
-                ajaxGet("https://api.jcdecaux.com/vls/v3/stations/" + station.number + "?contract=Nantes&apiKey=3a8b6dc2ac73396c5c2fb5135a07718936b00887", function (rep) {
+                // ajout des marqueurs         
+                ajaxGet("https://api.jcdecaux.com/vls/v3/stations/" + station.number + "?contract="+that.ville+"&apiKey=3a8b6dc2ac73396c5c2fb5135a07718936b00887", function (rep) {
                     let infos = JSON.parse(rep);
                     let marqueur = L.marker([infos.position.latitude, infos.position.longitude]).addTo(map);
                     marqueur.bindPopup(
