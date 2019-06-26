@@ -7,4 +7,9 @@ function demarreDiapo(){
 
 }
 
-window.addEventListener("load", demarreDiapo, false);
+function initialisation(){
+    demarreDiapo();
+    let carte = new Map("mapid", 47.218371, -1.553621);
+
+}
+window.addEventListener("load", initialisation, false);

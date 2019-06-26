@@ -1,6 +1,6 @@
 class Diaporama {
     constructor(cible, tableau, rep, duree) {
-        this.image = document.getElementById(cible)
+        this.image = document.getElementById(cible);
         this.tableau = tableau;
         this.rep = rep;
         this.imageEnCours = -1;
