@@ -17,22 +17,53 @@ class Map {
 
         // chargement des stations
         ajaxGet("https://api.jcdecaux.com/vls/v1/stations?contract=" + this.ville + "&apiKey=3a8b6dc2ac73396c5c2fb5135a07718936b00887", function (reponse) {
-                let stations = JSON.parse(reponse);
-                for (let station of stations) {
-                        // ajout des marqueurs         
-                        // Définition de la couleur du marqueur
-                        let marqueur = L.marker([station.position.lat, station.position.lng]).addTo(map);
+            let stations = JSON.parse(reponse);
+            let couleurIcon;
+            for (let station of stations) {
+                // ajout des marqueurs    
 
-                        // Affichage des infos dans un popup
-                        marqueur.bindPopup(
-                            "<p>" + station.name +
-                            "<br>" + station.address +
-                            "<br>Capacité : " + station.bike_stands +
-                            "<br>Vélos disponibles : " + station.available_bikes +
-                            "<br>Emplacements libres : " + station.available_bike_stands +
-                            "</p>"
-                        );
-                    };
+                // Calcul de la couleur du marqueur
+                if (station.status === "OPEN"){
+                    // la station est ouverte
+                    if (station.available_bikes > 0 && station.available_bikes < 5) {
+                        // nb vélos dispo entre 0 et 5 exclus
+                        couleurIcon = "img/yellow-dot.png";
+                    } else if (station.available_bikes === 0) {
+                        // aucun vélo dispo
+                        couleurIcon = "img/red-dot.png";
+                    } else {
+                        // nb vélos dispo > 5
+                        couleurIcon = "img/green-dot.png";
+                    }
+                } else {
+                    // station fermée
+                    couleurIcon = "img/red-dot.png"
+                };
+
+                // Définition de la couleur
+                let icon = L.icon({ iconUrl: couleurIcon });
+                
+                // Affichage des marqueurs
+                let marqueur = L.marker([station.position.lat, station.position.lng], {icon: icon }).addTo(map);
+                
+                // Affichage des infos dans un popup
+                marqueur.bindPopup(
+                    "<p>" + station.name +
+                    "<br>" + station.address
+                );
+
+                // Affichage du formulaire contextuel
+                marqueur.on('click', function () {
+                    $('#resa').css("display", "block");
+                    $('#detailsStation').html(
+                        station.name + " --> " + station.status + "<br>" +
+                        station.address + "<br>" +
+                        "<br>Capacité : " + station.bike_stands +
+                        "<br>Vélos disponibles : " + station.available_bikes +
+                        "<br>Emplacements libres : " + station.available_bike_stands
+                    );
                 });
-        };
+            };
+        });
     };
+};

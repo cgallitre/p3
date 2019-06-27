@@ -42,9 +42,23 @@
         </span>
     </div>
 
-    <!-- Gestion de la carte -->
-    <div id="mapid"></div>
-
+    <div id="main">
+        <!-- Gestion de la carte -->
+        <div id="mapid"></div>
+        <!-- Encart de réservation-->
+        <div id="resa">
+            <h2>Réservation</h2>
+            <p id="detailsStation"></p>
+            <form>
+                <p id="formResa">
+                    Entrez vos nom/prénom pour réserver :<br><br>
+                    <input type="text" name="prenom" id="prenom" placeholder="Prénom" required><br>
+                    <input type="text" name="nom" id="nom" placeholder="Nom" required><br>
+                    <input type="submit" value="Réserver !" />
+                </p>
+            </form>
+        </div>
+    </div>
 
     <!-- Chargement des différents scripts -->
     <script src="js/ajax.js"></script>

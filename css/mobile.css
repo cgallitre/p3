@@ -48,8 +48,26 @@ h1 {
     display: none;
 }
 
+#main{
+    display: flex;
+    margin-top:50px;
+
+}
 #mapid {
-    margin-top: 50px;
     width: 70%;
     height: 380px;
+}
+
+#resa{
+    display: none;
+    margin-left:10px;
+    margin-right:10px;
+    height: 370px;
+    border: 1px solid black;
+    min-width:28%;
+    padding: 10px 10px 10px 10px;
+}
+
+#formResa{
+    text-align: center;
 }
