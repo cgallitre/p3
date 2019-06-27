@@ -1,13 +1,13 @@
 class Map {
-    constructor(cible, ville, latitude, longitude){
-        this.cible=cible;
-        this.ville=ville;
-        this.longitude=longitude;
-        this.latitude=latitude;
+    constructor(cible, ville, latitude, longitude) {
+        this.cible = cible;
+        this.ville = ville;
+        this.longitude = longitude;
+        this.latitude = latitude;
         this.afficheCarte();
     };
 
-    afficheCarte(){
+    afficheCarte() {
         // fond de carte
         let map = L.map(this.cible).setView([this.latitude, this.longitude], 13)
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -16,25 +16,23 @@ class Map {
         }).addTo(map);
 
         // chargement des stations
-        let that = this;
         ajaxGet("https://api.jcdecaux.com/vls/v1/stations?contract=" + this.ville + "&apiKey=3a8b6dc2ac73396c5c2fb5135a07718936b00887", function (reponse) {
-            let stations = JSON.parse(reponse);
-            for (let station of stations) {
-                console.log
-                // ajout des marqueurs         
-                ajaxGet("https://api.jcdecaux.com/vls/v3/stations/" + station.number + "?contract="+that.ville+"&apiKey=3a8b6dc2ac73396c5c2fb5135a07718936b00887", function (rep) {
-                    let infos = JSON.parse(rep);
-                    let marqueur = L.marker([infos.position.latitude, infos.position.longitude]).addTo(map);
-                    marqueur.bindPopup(
-                    "<p>" + station.name +
-                    "<br>" + station.address +
-                    "<br>Capacité : " + infos.totalStands.capacity + 
-                    "<br>Vélos disponibles : " + infos.totalStands.availabilities.bikes +
-                    "<br>Emplacements libres : " + infos.totalStands.availabilities.stands +
-                    "</p>"
-                    );
+                let stations = JSON.parse(reponse);
+                for (let station of stations) {
+                        // ajout des marqueurs         
+                        // Définition de la couleur du marqueur
+                        let marqueur = L.marker([station.position.lat, station.position.lng]).addTo(map);
+
+                        // Affichage des infos dans un popup
+                        marqueur.bindPopup(
+                            "<p>" + station.name +
+                            "<br>" + station.address +
+                            "<br>Capacité : " + station.bike_stands +
+                            "<br>Vélos disponibles : " + station.available_bikes +
+                            "<br>Emplacements libres : " + station.available_bike_stands +
+                            "</p>"
+                        );
+                    };
                 });
-            };
-        });
+        };
     };
-};
