@@ -70,4 +70,13 @@ h1 {
 
 #formResa{
     text-align: center;
+    display: none;
+}
+#signature {
+    border: 1px solid black;
+    display: none;
+}
+
+#confirmation {
+    display: none;
 }

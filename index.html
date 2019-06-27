@@ -15,9 +15,9 @@
         integrity="sha384-qD/MNBVMm3hVYCbRTSOW130+CWeRIKbpot9/gR1BHkd7sIct4QKhT1hOPd+2hO8K" crossorigin="anonymous">
     </script>
     <!-- map gérée par leaflet -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css">
     <!-- Leaflet -->
-<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Réservation de vélos</title>
@@ -53,17 +53,20 @@
                 <p id="formResa">
                     Entrez vos nom/prénom pour réserver :<br><br>
                     <input type="text" name="prenom" id="prenom" placeholder="Prénom" required><br>
-                    <input type="text" name="nom" id="nom" placeholder="Nom" required><br>
-                    <input type="submit" value="Réserver !" />
+                    <input type="text" name="nom" id="nom" placeholder="Nom" required><br><br>
+                    <input type="submit" value="Réserver !" id="reserver">
                 </p>
             </form>
         </div>
+        <canvas id="signature" width="200" height="200"></canvas>
     </div>
-
+    <!-- Message de confirmation de la réservation -->
+    <div id="confirmation"></div>
     <!-- Chargement des différents scripts -->
     <script src="js/ajax.js"></script>
     <script src="js/diaporama.js"></script>
     <script src="js/map.js"></script>
+    <script src="js/canvas.js"></script>
     <script src="js/main.js"></script>
 </body>
 

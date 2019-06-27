@@ -47,14 +47,11 @@ class Map {
                 let marqueur = L.marker([station.position.lat, station.position.lng], {icon: icon }).addTo(map);
                 
                 // Affichage des infos dans un popup
-                marqueur.bindPopup(
-                    "<p>" + station.name +
-                    "<br>" + station.address
-                );
+                marqueur.bindPopup(station.name);
 
                 // Affichage du formulaire contextuel
                 marqueur.on('click', function () {
-                    $('#resa').css("display", "block");
+                    $('#resa').show();
                     $('#detailsStation').html(
                         station.name + " --> " + station.status + "<br>" +
                         station.address + "<br>" +
@@ -62,6 +59,18 @@ class Map {
                         "<br>Vélos disponibles : " + station.available_bikes +
                         "<br>Emplacements libres : " + station.available_bike_stands
                     );
+                    // On ajoute le formulaire de réservation en fonction des dispos de vélos
+                    if (station.status === "OPEN" && station.available_bikes > 0) {
+                        $('#formResa').show();
+                        $('#reserver').on('click',function(e){
+                            e.preventDefault(); // annuler l'envoi des données
+                            $('#resa').hide();
+                            $('#signature').show();
+                            let canvas = new Signature(); 
+                        });
+                    } else {
+                        $('#formResa').hide();
+                    }
                 });
             };
         });
