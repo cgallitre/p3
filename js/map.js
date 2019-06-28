@@ -80,9 +80,9 @@ class Map {
                             $('#formResa').hide();
                             $('#sign').show();
                             // Enregistrement des données utilisateur
-                            let infos = new EnregistreInfos(station.number, $('#nom').val(), $('#prenom').val());
-                            infos.afficheInfos();
-                            // let canvas = new Signature();      
+                            let utilisateur = new utilisateurs (station.number, $('#nom').val(), $('#prenom').val());
+                            utilisateur.afficheInfos();
+                            let canvas = new Signature();      
                         });
                     } else {
                         $('#formResa').hide();
@@ -93,10 +93,10 @@ class Map {
     };
 };
 
-class EnregistreInfos {
+class utilisateurs {
     constructor(station, nom, prenom) {
         this.nom = nom;
-        this.prenom= prenom;
+        this.prenom = prenom;
         this.station = station;
         this.stockeInfos();
     };
