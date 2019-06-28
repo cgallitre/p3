@@ -12,7 +12,8 @@ class Signature {
             var ctx = canvas.getContext('2d');
         } else {
             // Navigateur ne supporte pas le canvas
-            $('confirmation').html("Votre navigateur est trop ancien pour réaliser une réservation.")
+            $('#confirmation').html("Votre navigateur est trop ancien pour réaliser une réservation.")
         };
+
     };
 };

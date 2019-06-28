@@ -55,14 +55,14 @@ h1 {
 }
 #mapid {
     width: 70%;
-    height: 380px;
+    height: 430px;
 }
 
 #resa{
     display: none;
     margin-left:10px;
     margin-right:10px;
-    height: 370px;
+    height: 410px;
     border: 1px solid black;
     min-width:28%;
     padding: 10px 10px 10px 10px;
@@ -74,7 +74,12 @@ h1 {
 }
 #signature {
     border: 1px solid black;
-    display: none;
+}
+
+#sign{
+        margin: auto;
+        width : 250px;
+        text-align: center;
 }
 
 #confirmation {

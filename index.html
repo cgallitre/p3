@@ -49,16 +49,21 @@
         <div id="resa">
             <h2>Réservation</h2>
             <p id="detailsStation"></p>
-            <form>
-                <p id="formResa">
+            <form id="formResa">
+                <p>
                     Entrez vos nom/prénom pour réserver :<br><br>
                     <input type="text" name="prenom" id="prenom" placeholder="Prénom" required><br>
                     <input type="text" name="nom" id="nom" placeholder="Nom" required><br><br>
                     <input type="submit" value="Réserver !" id="reserver">
                 </p>
             </form>
-        </div>
-        <canvas id="signature" width="200" height="200"></canvas>
+            <div id="sign">
+                <p>Merci de signer ci-dessous :</p>
+                <canvas id="signature" width="250" height="125"></canvas>
+                <button id="ok">Valider</button>
+                <button id="clear">Effacer</button>
+            </div>
+        </div>  
     </div>
     <!-- Message de confirmation de la réservation -->
     <div id="confirmation"></div>

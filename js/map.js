@@ -23,7 +23,7 @@ class Map {
                 // ajout des marqueurs    
 
                 // Calcul de la couleur du marqueur
-                if (station.status === "OPEN"){
+                if (station.status === "OPEN") {
                     // la station est ouverte
                     if (station.available_bikes > 0 && station.available_bikes < 5) {
                         // nb vélos dispo entre 0 et 5 exclus
@@ -41,17 +41,25 @@ class Map {
                 };
 
                 // Définition de la couleur
-                let icon = L.icon({ iconUrl: couleurIcon });
-                
+                let icon = L.icon({
+                    iconUrl: couleurIcon
+                });
+
                 // Affichage des marqueurs
-                let marqueur = L.marker([station.position.lat, station.position.lng], {icon: icon }).addTo(map);
-                
+                let marqueur = L.marker([station.position.lat, station.position.lng], {
+                    icon: icon
+                }).addTo(map);
+
                 // Affichage des infos dans un popup
                 marqueur.bindPopup(station.name);
 
                 // Affichage du formulaire contextuel
                 marqueur.on('click', function () {
+                    // Affiche le formulaire de résa
                     $('#resa').show();
+                    // Masque la signtaure
+                    $('#sign').hide();
+                    // Affiche le détail d'une station
                     $('#detailsStation').html(
                         station.name + " --> " + station.status + "<br>" +
                         station.address + "<br>" +
@@ -62,17 +70,47 @@ class Map {
                     // On ajoute le formulaire de réservation en fonction des dispos de vélos
                     if (station.status === "OPEN" && station.available_bikes > 0) {
                         $('#formResa').show();
-                        $('#reserver').on('click',function(e){
+                        // On affiche les infos déjà présentes
+                        $('#nom').val(localStorage.getItem('nom'));
+                        $('#prenom').val(localStorage.getItem('prenom'));
+                        
+                        // Clic sur réserver
+                        $('#reserver').on('click', function (e) {
                             e.preventDefault(); // annuler l'envoi des données
-                            $('#resa').hide();
-                            $('#signature').show();
-                            let canvas = new Signature(); 
+                            $('#formResa').hide();
+                            $('#sign').show();
+                            // Enregistrement des données utilisateur
+                            let infos = new EnregistreInfos(station.number, $('#nom').val(), $('#prenom').val());
+                            infos.afficheInfos();
+                            // let canvas = new Signature();      
                         });
                     } else {
                         $('#formResa').hide();
-                    }
+                    };
                 });
             };
         });
     };
 };
+
+class EnregistreInfos {
+    constructor(station, nom, prenom) {
+        this.nom = nom;
+        this.prenom= prenom;
+        this.station = station;
+        this.stockeInfos();
+    };
+
+    stockeInfos() {
+        localStorage.setItem('prenom', this.prenom);
+        localStorage.setItem('nom', this.nom);
+        localStorage.setItem('station', this.station);
+    };
+
+    afficheInfos(){
+        console.log(localStorage.getItem('station'));
+        console.log(localStorage.getItem('nom'));
+        console.log(localStorage.getItem('prenom'));
+    };
+
+}
