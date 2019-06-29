@@ -13,6 +13,7 @@ class Signature {
         } else {
             // Navigateur ne supporte pas le canvas
             $('#confirmation').html("Votre navigateur est trop ancien pour réaliser une réservation.")
+            $('#confirmation').show();
         };
 
         // Gestion de l'écriture du canvas
@@ -93,9 +94,9 @@ class Signature {
         })
 
         // Bouton valider
-        $('#OK').on('click', function(){
-            // lancement du timer
-            
+        $('#ok').on('click', function(){
+            // lancement du timer 20 min
+            let timer = new Chrono(20);
         });
     };
 };
