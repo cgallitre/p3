@@ -8,7 +8,11 @@ function demarreDiapo(){
 }
 
 function initialisation(){
+    // Lancement du diaporama
     demarreDiapo();
+    // Initialisation de la carte
     let maCarte = new Map("mapid", "Nantes", 47.218371, -1.553621);
+    // Vérification de l'existence d'une réservation
+    
 }
 window.addEventListener("load", initialisation, false);
