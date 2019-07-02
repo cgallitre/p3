@@ -68,23 +68,29 @@ class Map {
                         "<br>Emplacements libres : " + station.available_bike_stands
                     );
                     // On ajoute le formulaire de réservation en fonction des dispos de vélos
-                    if (station.status === "OPEN" && station.available_bikes > 0) {
-                        $('#formResa').show();
-                        // On affiche les infos déjà présentes
-                        $('#nom').val(localStorage.getItem('nom'));
-                        $('#prenom').val(localStorage.getItem('prenom'));
-                        
-                        // Clic sur réserver
-                        $('#reserver').on('click', function (e) {
-                            e.preventDefault(); // annuler l'envoi des données
+                    // On vérifie d'abord qu'une réservation n'est pas en cours
+                    if (sessionStorage.getItem('allowResa') === null) {
+                       if (station.status === "OPEN" && station.available_bikes > 0) {
+                            $('#formResa').show();
+                            // On affiche les infos déjà présentes
+                            $('#nom').val(localStorage.getItem('nom'));
+                            $('#prenom').val(localStorage.getItem('prenom'));
+                            
+                            // Clic sur réserver
+                            $('#reserver').on('click', function (e) {
+                                e.preventDefault(); // annuler l'envoi des données
+                                $('#formResa').hide();
+                                $('#sign').show();
+                                // Enregistrement des données de la réservation
+                                new Reservation (station.name, $('#nom').val(), $('#prenom').val(), false);
+                                new Signature();      
+                            });
+                        } else {
                             $('#formResa').hide();
-                            $('#sign').show();
-                            // Enregistrement des données utilisateur
-                            let utilisateur = new Utilisateurs (station.name, $('#nom').val(), $('#prenom').val());
-                            let canvas = new Signature();      
-                        });
+                        };
                     } else {
-                        $('#formResa').hide();
+                        $('#detailsStation').html("Une réservation est en cours, veuillez l'annuler avant d'en faire une nouvelle");
+                        $('#detailsStation').show();
                     };
                 });
             };
@@ -92,11 +98,12 @@ class Map {
     };
 };
 
-class Utilisateurs {
-    constructor(station, nom, prenom) {
+class Reservation {
+    constructor(station, nom, prenom, allowResa) {
         this.nom = nom;
         this.prenom = prenom;
         this.station = station;
+        this.allowResa = allowResa;
         this.stockeInfos();
     };
 
@@ -104,6 +111,7 @@ class Utilisateurs {
         localStorage.setItem('prenom', this.prenom);
         localStorage.setItem('nom', this.nom);
         sessionStorage.setItem('station', this.station);
+        sessionStorage.setItem('allowResa', this.allowResa);
     };
 
 }
