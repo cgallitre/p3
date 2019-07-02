@@ -88,6 +88,10 @@ h1 {
     text-align: center;
 }
 
+#annuler {
+    display: none;
+}
+
 /* Alignement sur mobile */
 @media screen and (max-width: 980px) {
     #main {

@@ -80,8 +80,7 @@ class Map {
                             $('#formResa').hide();
                             $('#sign').show();
                             // Enregistrement des données utilisateur
-                            let utilisateur = new utilisateurs (station.number, $('#nom').val(), $('#prenom').val());
-                            utilisateur.afficheInfos();
+                            let utilisateur = new Utilisateurs (station.name, $('#nom').val(), $('#prenom').val());
                             let canvas = new Signature();      
                         });
                     } else {
@@ -93,7 +92,7 @@ class Map {
     };
 };
 
-class utilisateurs {
+class Utilisateurs {
     constructor(station, nom, prenom) {
         this.nom = nom;
         this.prenom = prenom;
@@ -104,13 +103,7 @@ class utilisateurs {
     stockeInfos() {
         localStorage.setItem('prenom', this.prenom);
         localStorage.setItem('nom', this.nom);
-        localStorage.setItem('station', this.station);
-    };
-
-    afficheInfos(){
-        console.log(localStorage.getItem('station'));
-        console.log(localStorage.getItem('nom'));
-        console.log(localStorage.getItem('prenom'));
+        sessionStorage.setItem('station', this.station);
     };
 
 }

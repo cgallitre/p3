@@ -1,31 +1,53 @@
 class Chrono {
-    constructor(duree) {
-        this.duree = duree; // duree est exprimée en minutes
+    constructor(min, sec) {
+        this.min = min; 
+        this.sec = sec;
+        this.timer;
         this.initialisation();
     };
 
-
     initialisation() {
-        $('#messageConfirmation').html("Réservation en cours. Temps restant : " + this.duree + ":00");
-        $('#confirmation').show();
-        let min = this.duree - 1;
-        let sec = 59;
-
-        let timer = window.setInterval(function () {
-            $('#messageConfirmation').html("Réservation en cours. Temps restant : " + min + ":" + sec);
-            if (min === 0 && sec === 0) {
-                clearInterval(timer);
-            } else if (sec === 0) {
-                min--;
-                sec = 59;
-            } else {               
-                sec--;
+        $('#annuler').show();
+        this.timer = window.setInterval( () => {
+            this.affichageResa();
+            if (this.min === 0 && this.sec === 0) {
+                this.annulation();
+            } else if (this.sec === 0) {
+                this.min--;
+                this.sec = 59;
+            } else {
+                this.sec--;
             };
-
+            // Conservation des données du timer
+            sessionStorage.setItem('timerMin', this.min);
+            sessionStorage.setItem('timerSec', this.sec);
         }, 1000);
 
         $('#annuler').on('click', () => {
-            clearInterval(timer);
+            this.annulation();
         });
     };
+
+    // Réservation échue ou clic sur annuler
+    annulation() {
+        clearInterval(this.timer);
+        $('#sign').hide();
+        $('#detailsStation').html('Veuillez sélectionner une station dans la carte.');
+        $('#messageConfirmation').html('Aucune réservation en cours.');
+        $('#annuler').hide();
+        sessionStorage.clear();
+    };
+
+    // Affiche réservation
+    affichageResa() {
+        $('#messageConfirmation').html(
+            "Vélo réservé à la station " +
+            sessionStorage.getItem('station') + " par " +
+            localStorage.getItem('prenom') + " " +
+            localStorage.getItem('nom') +
+            ". Temps restant : " +
+            this.min + ":" + this.sec
+        );
+    };
+
 }

@@ -94,9 +94,14 @@ class Signature {
         })
 
         // Bouton valider
-        $('#ok').on('click', function(){
+        $('#ok').on('click', () => {
             // lancement du timer 20 min
-            let timer = new Chrono(20);
+            this.demarreTimer();
         });
+    };
+
+    // Lancement du timer
+    demarreTimer() {
+        new Chrono(20,0);
     };
 };
