@@ -13,7 +13,6 @@ class Signature {
         } else {
             // Navigateur ne supporte pas le canvas
             $('#confirmation').html("Votre navigateur est trop ancien pour réaliser une réservation.")
-            $('#confirmation').show();
         };
 
         // Gestion de l'écriture du canvas
@@ -26,6 +25,16 @@ class Signature {
             redraw();
         });
 
+        // démarrage tactile
+        $('#signature').bind('touchstart', function (e) {
+            e.preventDefault();
+            var mouseX = e.pageX - this.offsetLeft; // position du clic - position de l'élément
+            var mouseY = e.pageY - this.offsetTop;
+            paint = true;
+            addClick(mouseX, mouseY); // Mémorise la position de départ (pas de lien avec un précédent point)
+            redraw();
+        });
+        
         // Mouvement de souris
         $('#signature').mousemove(function (e) {
             // On enregistre les points si le bouton souris est enfoncé (avec lien entre les points)
@@ -34,6 +43,17 @@ class Signature {
                 redraw();
             }
         });
+
+        // mouvement tactile
+        $('#signature').bind('touchmove', function (e) {
+            e.preventDefault();
+            // On enregistre les points si le bouton souris est enfoncé (avec lien entre les points)
+            if (paint) {
+                addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
+                redraw();
+            }
+        });
+
 
         // clic relâché
         $('#signature').mouseup(function (e) {
