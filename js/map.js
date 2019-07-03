@@ -4,10 +4,9 @@ class Map {
         this.ville = ville;
         this.longitude = longitude;
         this.latitude = latitude;
-        this.afficheCarte();
     };
 
-    afficheCarte() {
+    afficher() {
         // fond de carte
         let map = L.map(this.cible).setView([this.latitude, this.longitude], 13)
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -55,43 +54,16 @@ class Map {
 
                 // Affichage du formulaire contextuel
                 marqueur.on('click', function () {
-                    // Affiche le formulaire de résa
-                    $('#resa').show();
-                    // Masque la signtaure
-                    $('#sign').hide();
-                    // Affiche le détail d'une station
-                    $('#detailsStation').html(
-                        station.name + " --> " + station.status + "<br>" +
-                        station.address + "<br>" +
-                        "<br>Capacité : " + station.bike_stands +
-                        "<br>Vélos disponibles : " + station.available_bikes +
-                        "<br>Emplacements libres : " + station.available_bike_stands
-                    );
-                    // On ajoute le formulaire de réservation en fonction des dispos de vélos
-                    // On vérifie d'abord qu'une réservation n'est pas en cours
-                    if (sessionStorage.getItem('allowResa') === null) {
-                       if (station.status === "OPEN" && station.available_bikes > 0) {
-                            $('#formResa').show();
-                            // On affiche les infos déjà présentes
-                            $('#nom').val(localStorage.getItem('nom'));
-                            $('#prenom').val(localStorage.getItem('prenom'));
-                            
-                            // Clic sur réserver
-                            $('#reserver').on('click', function (e) {
-                                e.preventDefault(); // annuler l'envoi des données
-                                $('#formResa').hide();
-                                $('#sign').show();
-                                // Enregistrement des données de la réservation
-                                new Stockage (station.name, $('#nom').val(), $('#prenom').val(), false);
-                                new Signature();      
-                            });
-                        } else {
-                            $('#formResa').hide();
-                        };
-                    } else {
-                        $('#detailsStation').html("Une réservation est en cours, veuillez l'annuler avant d'en faire une nouvelle");
-                        $('#detailsStation').show();
-                    };
+                    // Affiche le détails d'une station
+                    let mesDetails = new details(
+                        station.name,
+                        station.status,
+                        station.address,
+                        station.bike_stands,
+                        station.available_bikes,
+                        station.available_bike_stands
+                        );
+                    mesDetails.initialisation();
                 });
             };
         });

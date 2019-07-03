@@ -3,7 +3,6 @@ class Chrono {
         this.min = min; 
         this.sec = sec;
         this.timer;
-        this.initialisation();
     };
 
     initialisation() {
@@ -40,14 +39,18 @@ class Chrono {
 
     // Affiche réservation
     affichageResa() {
-        $('#messageConfirmation').html(
-            "Vélo réservé à la station " +
-            sessionStorage.getItem('station') + " par " +
-            localStorage.getItem('prenom') + " " +
-            localStorage.getItem('nom') +
-            ". Temps restant : " +
-            this.min + ":" + this.sec
-        );
+        let chiffreEnPlus;
+        if (this.sec < 10){
+                chiffreEnPlus=`0`;
+            } else {
+                chiffreEnPlus=``;
+        };
+        $('#messageConfirmation').html(`
+            Vélo réservé à la station 
+            ${sessionStorage.getItem('station')} par 
+            ${localStorage.getItem('prenom')} 
+            ${localStorage.getItem('nom')}.
+            Temps restant : ${this.min}m${chiffreEnPlus}${this.sec}s.
+        `);
     };
-
 }

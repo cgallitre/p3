@@ -19,7 +19,7 @@ class Signature {
         // Clic sur souris
         $('#signature').mousedown(function (e) {
             var mouseX = e.pageX - this.offsetLeft; // position du clic - position de l'élément
-            var mouseY = e.pageY - this.offsetTop;          
+            var mouseY = e.pageY - this.offsetTop;
             paint = true;
             addClick(mouseX, mouseY); // Mémorise la position de départ (pas de lien avec un précédent point)
             redraw();
@@ -34,7 +34,7 @@ class Signature {
             addClick(mouseX, mouseY); // Mémorise la position de départ (pas de lien avec un précédent point)
             redraw();
         });
-        
+
         // Mouvement de souris
         $('#signature').mousemove(function (e) {
             // On enregistre les points si le bouton souris est enfoncé (avec lien entre les points)
@@ -43,7 +43,7 @@ class Signature {
                 redraw();
             }
         });
- 
+
         // mouvement tactile
         $('#signature').bind('touchmove', function (e) {
             e.preventDefault();
@@ -53,7 +53,6 @@ class Signature {
                 redraw();
             }
         });
-
 
         // clic relâché
         $('#signature').mouseup(function (e) {
@@ -100,21 +99,24 @@ class Signature {
             };
         };
 
-
         // Bouton effacer
-        $('#clear').on('click', function(){
+        $('#clear').on('click', function () {
             // Efface le canvas
             context.clearRect(0, 0, context.canvas.width, context.canvas.height);
             // Supprime la liste des points mémorisés
-            clickX=[];
-            clickY=[];
-            clickDrag=[];
+            clickX = [];
+            clickY = [];
+            clickDrag = [];
         })
 
         // Bouton valider
         $('#ok').on('click', () => {
             // lancement du timer 20 min 0 sec
-            new Chrono(2, 0);
+            let chronometre = new Chrono(1, 0);
+            chronometre.initialisation();
         });
+
+
     };
+
 };

@@ -4,7 +4,6 @@ class Stockage {
         this.prenom = prenom;
         this.station = station;
         this.allowResa = allowResa;
-        this.stockeInfos();
     };
 
     stockeInfos() {
