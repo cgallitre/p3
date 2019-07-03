@@ -43,7 +43,7 @@ class Signature {
                 redraw();
             }
         });
-
+ 
         // mouvement tactile
         $('#signature').bind('touchmove', function (e) {
             e.preventDefault();
@@ -89,7 +89,7 @@ class Signature {
             // on redessine l'ensemble
             for (let i = 0; i < clickX.length; i++) {
                 context.beginPath();
-                if (clickDrag[i] && i) {
+                if (clickDrag[i]) {
                     context.moveTo(clickX[i - 1], clickY[i - 1]);
                 } else {
                     context.moveTo(clickX[i] - 1, clickY[i]);
@@ -99,8 +99,6 @@ class Signature {
                 context.stroke();
             };
         };
-
-        // Touch screen ??
 
 
         // Bouton effacer
@@ -115,13 +113,8 @@ class Signature {
 
         // Bouton valider
         $('#ok').on('click', () => {
-            // lancement du timer 20 min
-            this.demarreTimer();
+            // lancement du timer 20 min 0 sec
+            new Chrono(2, 0);
         });
-    };
-
-    // Lancement du timer
-    demarreTimer() {
-        new Chrono(20,0);
     };
 };

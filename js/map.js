@@ -82,7 +82,7 @@ class Map {
                                 $('#formResa').hide();
                                 $('#sign').show();
                                 // Enregistrement des données de la réservation
-                                new Reservation (station.name, $('#nom').val(), $('#prenom').val(), false);
+                                new Stockage (station.name, $('#nom').val(), $('#prenom').val(), false);
                                 new Signature();      
                             });
                         } else {
@@ -97,21 +97,3 @@ class Map {
         });
     };
 };
-
-class Reservation {
-    constructor(station, nom, prenom, allowResa) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.station = station;
-        this.allowResa = allowResa;
-        this.stockeInfos();
-    };
-
-    stockeInfos() {
-        localStorage.setItem('prenom', this.prenom);
-        localStorage.setItem('nom', this.nom);
-        sessionStorage.setItem('station', this.station);
-        sessionStorage.setItem('allowResa', this.allowResa);
-    };
-
-}
