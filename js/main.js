@@ -1,5 +1,11 @@
-function initialisation() {
+// Variables globales : temps par défaut d'une réservation
+let minGlobal = 20; // minutes
+let secGlobal = 0; // secondes
 
+// Lance la fonction principale
+window.addEventListener("load", initialisation, false);
+
+function initialisation() {
     // Lancement du diaporama
     let tabDiapo = ['photo1.jpg', 'photo2.jpg', 'photo3.jpg'];
     let monDiapo = new Diaporama('diapo', tabDiapo, 'img/', 5000);
@@ -16,10 +22,7 @@ function initialisation() {
         // Réservation existante : on lance le chrono en récupérant les valeurs temps
         let monChrono = new Chrono(sessionStorage.getItem('timerMin'), sessionStorage.getItem('timerSec'));
         // Lance le chrono
-        monChrono.initialisation(); 
+        monChrono.initialisation();
         $('#detailsStation').html("Une réservation est en cours, veuillez l'annuler avant d'en faire une nouvelle.");
     };
 };
-
-// Lance la fonction principale
-window.addEventListener("load", initialisation, false);

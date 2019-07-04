@@ -111,12 +111,9 @@ class Signature {
 
         // Bouton valider
         $('#ok').on('click', () => {
-            // lancement du timer 20 min 0 sec
-            let chronometre = new Chrono(1, 0);
-            chronometre.initialisation();
+            // lancement du chrono
+            let monChrono = new Chrono(minGlobal, secGlobal);
+            monChrono.initialisation();
         });
-
-
     };
-
 };

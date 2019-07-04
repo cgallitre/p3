@@ -54,16 +54,18 @@ class Map {
 
                 // Affichage du formulaire contextuel
                 marqueur.on('click', function () {
-                    // Affiche le détails d'une station
-                    let mesDetails = new details(
-                        station.name,
-                        station.status,
-                        station.address,
-                        station.bike_stands,
-                        station.available_bikes,
-                        station.available_bike_stands
+                    // Affiche le détails d'une station si aucune réservation en cours
+                    if (!(sessionStorage.getItem('allowResa'))) {
+                        let mesDetails = new details(
+                            station.name,
+                            station.status,
+                            station.address,
+                            station.bike_stands,
+                            station.available_bikes,
+                            station.available_bike_stands
                         );
-                    mesDetails.initialisation();
+                        mesDetails.initialisation();
+                    };
                 });
             };
         });

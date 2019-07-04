@@ -49,7 +49,7 @@ class Chrono {
             Vélo réservé à la station 
             ${sessionStorage.getItem('station')} par 
             ${localStorage.getItem('prenom')} 
-            ${localStorage.getItem('nom')}.
+            ${localStorage.getItem('nom')}.<br>
             Temps restant : ${this.min}m${chiffreEnPlus}${this.sec}s.
         `);
     };
