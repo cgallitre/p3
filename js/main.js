@@ -1,8 +1,11 @@
 // Variables globales : temps par défaut d'une réservation
-let minGlobal = 20; // minutes
-let secGlobal = 0; // secondes
+let minGlobal = 0; // minutes
+let secGlobal = 5; // secondes
 
-// Lance la fonction principale
+// Création de la réservation
+let maResa = new Reservation();
+
+// Appel de la fonction principale
 window.addEventListener("load", initialisation, false);
 
 function initialisation() {
@@ -18,7 +21,7 @@ function initialisation() {
     maCarte.afficher(); // affiche la carte principale avec les marqueurs
 
     // Vérification de l'existence d'une réservation
-    if (sessionStorage.getItem('allowResa')) {
+    if (sessionStorage.getItem('allowResa') === 'false') {
         // Réservation existante : on lance le chrono en récupérant les valeurs temps
         let monChrono = new Chrono(sessionStorage.getItem('timerMin'), sessionStorage.getItem('timerSec'));
         // Lance le chrono

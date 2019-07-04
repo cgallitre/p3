@@ -34,8 +34,10 @@ class details {
                 $('#formResa').hide();
                 $('#sign').show();
                 // Enregistrement des données de la réservation
-                let mesInfos = new Stockage(this.nom, $('#nom').val(), $('#prenom').val(), false);
-                mesInfos.stockeInfos();
+                maResa.station = this.nom;
+                maResa.prenom = $('#prenom').val();
+                maResa.nom = $('#nom').val();
+                maResa.stockeInfos();
                 // Lancement du canvas
                 new Signature();
             });

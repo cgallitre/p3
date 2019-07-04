@@ -9,7 +9,7 @@ class Chrono {
         $('#annuler').show();
         this.timer = window.setInterval( () => {
             this.affichageResa();
-            if (this.min === 0 && this.sec === 0) {
+            if (this.min <= 0 && this.sec === 0) {
                 this.annulation();
             } else if (this.sec === 0) {
                 this.min--;

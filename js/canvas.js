@@ -111,6 +111,10 @@ class Signature {
 
         // Bouton valider
         $('#ok').on('click', () => {
+            // confirmation de la réservation
+            maResa.allowResa = false;
+            maResa.confirmer();
+            
             // lancement du chrono
             let monChrono = new Chrono(minGlobal, secGlobal);
             monChrono.initialisation();

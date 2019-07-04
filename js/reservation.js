@@ -1,4 +1,4 @@
-class Stockage {
+class Reservation {
     constructor(station, nom, prenom, allowResa) {
         this.nom = nom;
         this.prenom = prenom;
@@ -10,6 +10,9 @@ class Stockage {
         localStorage.setItem('prenom', this.prenom);
         localStorage.setItem('nom', this.nom);
         sessionStorage.setItem('station', this.station);
-        sessionStorage.setItem('allowResa', this.allowResa);
     };
+
+    confirmer(){
+        sessionStorage.setItem('allowResa', this.allowResa);
+    }
 };
