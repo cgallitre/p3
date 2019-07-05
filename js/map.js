@@ -65,6 +65,8 @@ class Map {
                             station.available_bike_stands
                         );
                         mesDetails.initialisation();
+                        // Cache la signature éventuellement
+                        $('#sign').hide();
                     };
                 });
             };

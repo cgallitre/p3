@@ -1,12 +1,12 @@
 class Diaporama {
-    constructor(cible, tableau, rep, duree) {
-        this.image = document.getElementById(cible);
+    constructor(cibleImage, cibleLegende, tableau, rep, duree) {
+        this.image = document.getElementById(cibleImage);
+        this.legende = document.getElementById(cibleLegende);
         this.tableau = tableau;
         this.rep = rep;
         this.imageEnCours = -1;
         this.duree = duree;
         this.boucleDiapo = 0;
-        this.cible = cible;
     };
 
     // Boucle principale du diaporama
@@ -67,7 +67,8 @@ class Diaporama {
         if (this.imageEnCours === -1) {
             this.imageEnCours = this.tableau.length - 1;
         };
-        this.image.src = this.rep + this.tableau[this.imageEnCours];
+        this.image.src = this.rep + this.tableau[this.imageEnCours][0];
+        this.legende.innerHTML = this.tableau[this.imageEnCours][1];
     };
 
     // diapo suivante
@@ -76,6 +77,7 @@ class Diaporama {
         if (this.imageEnCours === this.tableau.length) {
             this.imageEnCours = 0;
         };
-        this.image.src = this.rep + this.tableau[this.imageEnCours];
+        this.image.src = this.rep + this.tableau[this.imageEnCours][0];
+        this.legende.innerHTML = this.tableau[this.imageEnCours][1];
     };
 };

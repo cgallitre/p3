@@ -28,50 +28,54 @@
 </head>
 
 <body>
-    <h1>Gestion de vélos à Nantes</h1>
-    <!-- Bandeau supérieur -->
-    <div id="slider">
-        <!-- Image Principale -->
-        <img src="" alt="" id="diapo">
-        <!-- Flèche de déplacement gauche -->
-        <span id="left-arrow" class="fa-layers">
-            <i class="fas fa-circle icones-dark" data-fa-transform="grow-6 left-8"></i>
-            <i class="fas fa-chevron-left" data-fa-transform="shrink-8 left-3"></i>
-        </span>
-        <!-- Flèche de déplacement droite -->
-        <span id="right-arrow" class="fa-layers">
-            <i class="fas fa-circle icones-dark" data-fa-transform="grow-6 right-8"></i>
-            <i class="fas fa-chevron-right" data-fa-transform="shrink-8 right-3"></i>
-        </span>
-    </div>
+    <div id="container">
+        <h1>Le vélo nantais</h1>
+        <!-- Bandeau supérieur -->
+        <figure id="slider">
+            <!-- Image Principale -->
+            <img src="" alt="" id="diapo" class="img-fluid">
+            <!-- légende -->
+            <figcaption id="legende"></figcaption>
+            <!-- Flèche de déplacement gauche -->
+            <span id="left-arrow" class="fa-layers">
+                <i class="fas fa-circle icones-dark" data-fa-transform="grow-6 left-8"></i>
+                <i class="fas fa-chevron-left" data-fa-transform="shrink-8 left-3"></i>
+            </span>
+            <!-- Flèche de déplacement droite -->
+            <span id="right-arrow" class="fa-layers">
+                <i class="fas fa-circle icones-dark" data-fa-transform="grow-6 right-8"></i>
+                <i class="fas fa-chevron-right" data-fa-transform="shrink-8 right-3"></i>
+            </span>
+        </figure>
 
-    <div id="main">
-        <!-- Gestion de la carte -->
-        <div id="mapid"></div>
-        <!-- Encart de réservation-->
-        <div id="resa">
-            <h2>Réservation</h2>
-            <p id="detailsStation">Veuillez sélectionner une station dans la carte.</p>
-            <form id="formResa">
-                <p>
-                    Entrez vos nom/prénom pour réserver :<br><br>
-                    <input type="text" name="prenom" id="prenom" placeholder="Prénom" required><br>
-                    <input type="text" name="nom" id="nom" placeholder="Nom" required><br><br>
-                    <input type="submit" value="Réserver !" id="reserver" class="btn btn-primary">
-                </p>
-            </form>
-            <div id="sign">
-                <p>Merci de signer ci-dessous :</p>
-                <canvas id="signature" width="250" height="125"></canvas>
-                <button id="ok" class="btn">Valider</button>
-                <button id="clear" class="btn">Effacer</button>
+        <div id="main" class="">
+            <!-- Gestion de la carte -->
+            <div id="mapid"></div>
+            <!-- Encart de réservation-->
+            <div id="resa">
+                <h2>Réservation</h2>
+                <p id="detailsStation">Veuillez sélectionner une station dans la carte.</p>
+                <form id="formResa">
+                    <p>
+                        Entrez vos nom/prénom pour réserver :<br><br>
+                        <input type="text" name="prenom" id="prenom" placeholder="Prénom" required><br>
+                        <input type="text" name="nom" id="nom" placeholder="Nom" required><br><br>
+                        <input type="submit" value="Réserver !" id="reserver" class="btn btn-primary">
+                    </p>
+                </form>
+                <div id="sign">
+                    <p>Merci de signer ci-dessous :</p>
+                    <canvas id="signature" width="250" height="125"></canvas>
+                    <button id="ok" class="btn btn-primary">Valider</button>
+                    <button id="clear" class="btn btn-primary">Effacer</button>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- Message de confirmation de la réservation et bouton d'annulation -->
-    <div id="confirmation">
-        <p id="messageConfirmation">Aucune réservation en cours.</p>
-        <button id="annuler" class="btn">Annuler</button>
+        <!-- Message de confirmation de la réservation et bouton d'annulation -->
+        <div id="confirmation">
+            <p id="messageConfirmation">Aucune réservation en cours.</p>
+            <button id="annuler" class="btn btn-primary">Annuler</button>
+        </div>
     </div>
     <!-- Chargement des différents scripts -->
     <script src="js/ajax.js"></script>
@@ -82,6 +86,16 @@
     <script src="js/canvas.js"></script>
     <script src="js/timer.js"></script>
     <script src="js/main.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

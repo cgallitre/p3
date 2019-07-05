@@ -118,6 +118,10 @@ class Signature {
             // lancement du chrono
             let monChrono = new Chrono(minGlobal, secGlobal);
             monChrono.initialisation();
+
+            // On bloque la signature
+            $('#detailsStation').html("Une réservation est en cours, veuillez l'annuler avant d'en faire une nouvelle.");
+            $('#sign').hide();
         });
     };
 };
