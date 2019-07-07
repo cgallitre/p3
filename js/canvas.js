@@ -84,7 +84,7 @@ class Signature {
             // On efface tout
             context.clearRect(0, 0, context.canvas.width, context.canvas.height);
             // Style d'écriture
-            context.strokeStyle = "#00E64D";
+            context.strokeStyle = "#5cadd3";
             context.lineJoin = "round";
             context.lineWidth = 3;
             // on redessine l'ensemble

@@ -15,9 +15,6 @@
     <script defer src="https://use.fontawesome.com/releases/v5.7.0/js/all.js"
         integrity="sha384-qD/MNBVMm3hVYCbRTSOW130+CWeRIKbpot9/gR1BHkd7sIct4QKhT1hOPd+2hO8K" crossorigin="anonymous">
     </script>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- map gérée par leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css">
     <!-- Leaflet -->
@@ -33,7 +30,7 @@
         <!-- Bandeau supérieur -->
         <figure id="slider">
             <!-- Image Principale -->
-            <img src="" alt="" id="diapo" class="img-fluid">
+            <img src="" alt="" id="diapo">
             <!-- légende -->
             <figcaption id="legende"></figcaption>
             <!-- Flèche de déplacement gauche -->
@@ -60,21 +57,21 @@
                         Entrez vos nom/prénom pour réserver :<br><br>
                         <input type="text" name="prenom" id="prenom" placeholder="Prénom" required><br>
                         <input type="text" name="nom" id="nom" placeholder="Nom" required><br><br>
-                        <input type="submit" value="Réserver !" id="reserver" class="btn btn-primary">
+                        <input type="submit" value="Réserver !" id="reserver" class="button">
                     </p>
                 </form>
                 <div id="sign">
                     <p>Merci de signer ci-dessous :</p>
                     <canvas id="signature"></canvas>
-                    <button id="ok" class="btn btn-primary">Valider</button>
-                    <button id="clear" class="btn btn-primary">Effacer</button>
+                    <button id="ok" class="button">Valider</button>
+                    <button id="clear" class="button">Effacer</button>
                 </div>
             </div>
         </div>
         <!-- Message de confirmation de la réservation et bouton d'annulation -->
         <div id="confirmation">
             <p id="messageConfirmation">Aucune réservation en cours.</p>
-            <button id="annuler" class="btn btn-primary">Annuler</button>
+            <button id="annuler" class="button">Annuler</button>
         </div>
     </div>
     <!-- Chargement des différents scripts -->
@@ -89,12 +86,6 @@
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-    </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
 </body>
 
