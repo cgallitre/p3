@@ -10,6 +10,8 @@ class Signature {
         if (canvas.getContext) {
             // Le navigateur est compatible : on récupère le contexte en 2D
             var context = canvas.getContext('2d');
+            // On efface tout
+            context.clearRect(0, 0, context.canvas.width, context.canvas.height);
         } else {
             // Navigateur ne supporte pas le canvas
             $('#confirmation').html("Votre navigateur est trop ancien pour réaliser une réservation.")

@@ -1,5 +1,5 @@
 // Variables globales : temps par défaut d'une réservation
-const minGlobal = 0; // minutes
+const minGlobal = 1; // minutes
 const secGlobal = 5; // secondes
 
 // Création de la réservation

@@ -7,13 +7,16 @@ class Diaporama {
         this.imageEnCours = -1;
         this.duree = duree;
         this.boucleDiapo = 0;
+        this.finSouris = false;
     };
 
     // Boucle principale du diaporama
     executeDiaporama() {
         // Passage à la diapo suivante
-        this.diapoSuivante();
-
+        if (this.finSouris === false){
+            this.diapoSuivante();
+        };
+        this.finSouris = false;
         // lecture en boucle
         this.boucleDiapo = setTimeout(() => {
             this.executeDiaporama()
@@ -34,6 +37,7 @@ class Diaporama {
                 $('#right-arrow').css('display', 'none');
                 $('#left-arrow').css('display', 'none');
                 // $(document).off('keyup');
+                this.finSouris = true;
                 this.executeDiaporama();
             }
         );
