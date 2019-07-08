@@ -11,9 +11,9 @@ window.addEventListener("load", initialisation, false);
 function initialisation() {
     // Lancement du diaporama
     const tabDiapo = [
-        ['nantes.png','1- Cliquez sur la station qui vous intéresse puis...'],
-        ['soir.png','2- Saisissez votre nom et...'],
-        ['elephant.png','3- Signez, c\'est réservé !']
+        ['nantes.jpg','1- Cliquez sur la station qui vous intéresse puis...'],
+        ['soir.jpg','2- Saisissez votre nom et...'],
+        ['elephant.jpg','3- Signez, c\'est réservé !']
     ];
 
     const monDiapo = new Diaporama('diapo', 'legende', tabDiapo, 'img/', 5000);

@@ -17,7 +17,7 @@ class Signature {
             $('#confirmation').html("Votre navigateur est trop ancien pour réaliser une réservation.")
         };
 
-        // Sauvegarde de la position dans différents tableaux
+        // Variables pour mémoriser les positions des points dans différents tableaux
         let clickX = new Array();
         let clickY = new Array();
         let clickDrag = new Array(); // le point est-t-il lié au précédent ?
@@ -25,7 +25,7 @@ class Signature {
 
         // Clic sur souris
         $('#signature').mousedown(function (e) {
-            appui(e); 
+            appui(e);
         });
 
         // Touch tactile
@@ -33,16 +33,6 @@ class Signature {
             e.preventDefault();
             appui(e);
         });
-
-        // enregistre la position du clic ou touch
-        function appui(e) {
-            var mouseX = e.pageX - e.offsetLeft; // position du clic - position de l'élément
-            var mouseY = e.pageY - e.offsetTop;
-            paint = true;
-            addClick(mouseX, mouseY); // Mémorise la position (pas de lien avec un précédent point)
-            redraw();
-        }
-
 
         // Mouvement de souris
         $('#signature').mousemove(function (e) {
@@ -73,12 +63,22 @@ class Signature {
             paint = false;
         });
 
+        // enregistre la position du clic ou touch
+        function appui(e) {
+            var mouseX = e.pageX - e.offsetLeft; // position du clic - position de l'élément
+            var mouseY = e.pageY - e.offsetTop;
+            paint = true;
+            addClick(mouseX, mouseY); // Mémorise la position (pas de lien avec un précédent point)
+            redraw();
+        };
+
+
         // Mémorise la position du clic dans les variables tableaux
         function addClick(x, y, dragging) {
             clickX.push(x);
             clickY.push(y);
             clickDrag.push(dragging); // true ou false en fonction de l'existence d'un lien
-        }
+        };
 
         // Effacement et reécriture du canvas à chaque appel de la fonction
         function redraw() {
@@ -110,7 +110,7 @@ class Signature {
             clickX = [];
             clickY = [];
             clickDrag = [];
-        })
+        });
 
         // Bouton valider
         $('#ok').on('click', () => {

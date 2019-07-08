@@ -173,6 +173,6 @@ h1 {
     }
 
     #left-arrow, #right-arrow {
-        top: 20%;
+        display: none;
     }
 }
