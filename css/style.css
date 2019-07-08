@@ -126,9 +126,6 @@ h1 {
 
 #signature {
     border: 1px solid black;
-    z-index:99;
-    height: 130px;
-    width:220px;
 }
 
 #sign {
@@ -152,7 +149,7 @@ h1 {
 }
 
 /* Alignement sur mobile */
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 768px) {
     #main {
         flex-direction: column;
         padding-right: 20px;
