@@ -31,18 +31,29 @@ class details {
             // Clic sur réserver
             $('#reserver').on('click', (e) => {
                 e.preventDefault(); // annuler l'envoi des données
-                $('#formResa').hide();
-                $('#sign').show();
-                // Enregistrement des données de la réservation
-                maResa.station = this.nom;
-                maResa.prenom = $('#prenom').val();
-                maResa.nom = $('#nom').val();
-                maResa.stockeInfos();
-                // Lancement du canvas
-                new Signature();
+                this.verifSaisie(e);
             });
+
         } else {
             $('#formResa').hide();
+        };
+    };
+
+    verifSaisie(e) {
+        if ($('#nom').val() === '' || $('#prenom').val() === '') {
+            $('#verifSaisie').html('Merci de renseigner complètement le formulaire avant de réserver.');
+            $('#verifSaisie').show();
+        } else {
+            $('#verifSaisie').hide();
+            $('#formResa').hide();
+            $('#sign').show();
+            // Enregistrement des données de la réservation
+            maResa.station = this.nom;
+            maResa.prenom = $('#prenom').val();
+            maResa.nom = $('#nom').val();
+            maResa.stockeInfos();
+            // Lancement du canvas
+            new Signature();
         };
     };
 };

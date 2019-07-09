@@ -124,6 +124,10 @@ h1 {
     display: none;
 }
 
+#verifSaisie {
+    display: none;
+}
+
 #signature {
     border: 1px solid black;
 }

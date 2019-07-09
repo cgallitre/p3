@@ -56,11 +56,13 @@
                 <form id="formResa">
                     <p>
                         Entrez vos nom/prénom pour réserver :<br><br>
-                        <input type="text" name="prenom" id="prenom" placeholder="Prénom" required><br>
-                        <input type="text" name="nom" id="nom" placeholder="Nom" required><br><br>
+                        <input type="text" name="prenom" id="prenom" placeholder="Prénom"><br>
+                        <input type="text" name="nom" id="nom" placeholder="Nom"><br><br>
                         <input type="submit" value="Réserver !" id="reserver" class="button">
+                        
                     </p>
                 </form>
+                <p id="verifSaisie"></p>
                 <div id="sign">
                     <p>Merci de signer ci-dessous :</p>
                     <canvas id="signature" width="220" height="130"></canvas>
