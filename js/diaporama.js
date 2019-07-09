@@ -18,9 +18,7 @@ class Diaporama {
         };
         this.finSouris = false;
         // lecture en boucle
-        this.boucleDiapo = setTimeout(() => {
-            this.executeDiaporama()
-        }, this.duree);
+        this.boucleDiapo = setTimeout(() => this.executeDiaporama(), this.duree);
     };
 
     // Gestion de la souris : on stoppe si au-dessus du diapo
@@ -40,13 +38,8 @@ class Diaporama {
             }
         );
         // Gestion de la souris
-        $('#left-arrow').click(() => {
-            this.diapoPrecedente();
-        });
-
-        $('#right-arrow').click(() => {
-            this.diapoSuivante();
-        });
+        $('#left-arrow').click(() => this.diapoPrecedente());
+        $('#right-arrow').click(() => this.diapoSuivante());
     };
 
     // Gestion du clavier
@@ -58,6 +51,8 @@ class Diaporama {
                     break;
                 case 39: // Flèche droite
                     this.diapoSuivante();
+                    break;
+                default : // rien à faire pour les autres touches
                     break;
             };
         });
