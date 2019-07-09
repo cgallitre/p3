@@ -17,9 +17,7 @@ function initialisation() {
     ];
 
     const monDiapo = new Diaporama('diapo', 'legende', tabDiapo, 'img/', 5000);
-    monDiapo.executeDiaporama(); // Lance le diaporama
-    monDiapo.executeSouris(); // active la gestion de la souris
-    monDiapo.executeClavier(); // active la gestion du clavier
+    monDiapo.initDiaporama(); // démarre le diaporama
 
     // Initialisation de la carte
     const maCarte = new Map("mapid", "Nantes", 47.218371, -1.553621);

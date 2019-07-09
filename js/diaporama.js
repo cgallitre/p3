@@ -10,6 +10,13 @@ class Diaporama {
         this.finSouris = false;
     };
 
+    // initialise le diaporama avec toutes les méthodes
+    initDiaporama() {
+        this.executeDiaporama();
+        this.executeSouris();
+        this.executeClavier();
+    };
+
     // Boucle principale du diaporama
     executeDiaporama() {
         // Passage à la diapo suivante
