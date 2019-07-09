@@ -1,3 +1,6 @@
+
+// 4 méthodes : initialisation, gestionEvenements, ajoutClic, Redessine
+
 class Signature {
     constructor() {
         // on récupère l'élément HTML Canvas
@@ -7,8 +10,7 @@ class Signature {
         this.clickX = new Array(); // position en abscisse
         this.clickY = new Array(); // position en ordonnée
         this.clickDrag = new Array(); // le point est-t-il lié au précédent ?
-        this.paint; // Le bouton de la souris est-il enfoncé ?
-
+        this.paint = false; // Le bouton de la souris est-il enfoncé ?
 
         this.initialisation();
     };
@@ -30,7 +32,6 @@ class Signature {
     };
 
     gestionEvenements() {
-
         // Clic sur souris
         $('#signature').mousedown(e => appui(e));
 
@@ -40,38 +41,38 @@ class Signature {
             appui(e);
         }));
 
-        // Mouvement de souris
-        $('#signature').mousemove(function (e) {
-            // On enregistre les points si le bouton souris est enfoncé (avec lien entre les points)
-            if (this.paint) {
-                this.addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
-                this.redraw();
-            }
-        });
-
-        // mouvement tactile
-        $('#signature').bind('touchmove', function (e) {
-            e.preventDefault();
-            // On enregistre les points si le bouton souris est enfoncé (avec lien entre les points)
-            if (this.paint) {
-                this.addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
-                this.redraw();
-            }
-        });
-
         // clic relâché
         $('#signature').mouseup(e => this.paint = false);
 
         // Sortie de l'espace du canvas
         $('#signature').mouseleave(e => this.paint = false);
 
+        // Mouvement de souris
+        $('#signature').mousemove((e) => {
+            // On enregistre les points si le bouton souris est enfoncé (avec lien entre les points)
+            if (this.paint) {
+                this.ajoutClic(e.pageX - this.canvas.offsetLeft, e.pageY - this.canvas.offsetTop, true);
+                this.redessine();
+            }
+        });
+
+        // mouvement tactile
+        $('#signature').bind('touchmove', (e) => {
+            e.preventDefault();
+            // On enregistre les points si le bouton souris est enfoncé (avec lien entre les points)
+            if (this.paint) {
+                this.ajoutClic(e.pageX - this.canvas.offsetLeft, e.pageY - this.canvas.offsetTop, true);
+                this.redessine();
+            }
+        });
+
         // enregistre la position du clic ou touch
         let appui = (e) => {
             let mouseX = e.pageX - e.offsetLeft; // position du clic - position de l'élément
             let mouseY = e.pageY - e.offsetTop;
             this.paint = true;
-            this.addClick(mouseX, mouseY); // Mémorise la position (pas de lien avec un précédent point)
-            this.redraw();
+            this.ajoutClic(mouseX, mouseY); // Mémorise la position (pas de lien avec un précédent point)
+            this.redessine();
         };
 
         // Bouton effacer
@@ -101,14 +102,14 @@ class Signature {
     };
 
     // Mémorise la position du clic dans les variables tableaux
-    addClick(x, y, dragging) {
+    ajoutClic(x, y, dragging) {
         this.clickX.push(x);
         this.clickY.push(y);
         this.clickDrag.push(dragging); // true ou false en fonction de l'existence d'un lien
     };
 
     // Effacement et réécriture du canvas à chaque appel de la fonction
-    redraw() {
+    redessine() {
         // On efface tout
         this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
         // Style d'écriture
