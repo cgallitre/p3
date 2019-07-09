@@ -24,15 +24,13 @@ class Signature {
         let paint; // Le bouton de la souris est-il enfoncé ?
 
         // Clic sur souris
-        $('#signature').mousedown(function (e) {
-            appui(e);
-        });
+        $('#signature').mousedown(e => appui(e));
 
         // Touch tactile
-        $('#signature').bind('touchstart', function (e) {
+        $('#signature').bind('touchstart', (e => {
             e.preventDefault();
             appui(e);
-        });
+        }));
 
         // Mouvement de souris
         $('#signature').mousemove(function (e) {
@@ -54,17 +52,13 @@ class Signature {
         });
 
         // clic relâché
-        $('#signature').mouseup(function (e) {
-            paint = false;
-        });
+        $('#signature').mouseup(e => paint = false);
 
         // Sortie de l'espace du canvas
-        $('#signature').mouseleave(function (e) {
-            paint = false;
-        });
+        $('#signature').mouseleave(e => paint = false);
 
         // enregistre la position du clic ou touch
-        function appui(e) {
+        let appui = (e) => {
             var mouseX = e.pageX - e.offsetLeft; // position du clic - position de l'élément
             var mouseY = e.pageY - e.offsetTop;
             paint = true;

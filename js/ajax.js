@@ -10,12 +10,13 @@ function ajaxGet(url, callback) {
             callback(req.responseText);
         } else {
             console.error(req.status + " " + req.statusText + " " + url);
+            console.error(`${req.status} ${req.statusText} ${url}`);
         }
     });
 
     // Gestion des erreurs réseau (ex : serveur introuvable)
     req.addEventListener("error", function () {
-        console.error("Erreur réseau avec l'URL " + url);
+        console.error(`Erreur réseau avec l'URL ${url}`);
     });
 
     // Envoi de la requête
