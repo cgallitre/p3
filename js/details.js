@@ -9,6 +9,8 @@ class details {
     };
 
     initialisation() {
+        // masque la vérif saisir éventuelle
+        $('#verifSaisie').hide();
         // Affiche le détail d'une station
         $('#detailsStation').html(`
                 ${this.nom} --> ${this.status}<br>

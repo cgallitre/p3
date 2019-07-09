@@ -126,6 +126,8 @@ h1 {
 
 #verifSaisie {
     display: none;
+    text-align: center;
+    color:red;
 }
 
 #signature {

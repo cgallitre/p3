@@ -1,4 +1,3 @@
-
 // 4 méthodes : initialisation, gestionEvenements, ajoutClic, Redessine
 
 class Signature {
@@ -87,17 +86,8 @@ class Signature {
 
         // Bouton valider
         $('#ok').on('click', () => {
-            // confirmation de la réservation
-            maResa.allowResa = false;
-            maResa.confirmer();
-
-            // lancement du chrono
-            let monChrono = new Chrono(minGlobal, secGlobal);
-            monChrono.initialisation();
-
-            // On bloque la signature
-            $('#detailsStation').html("Une réservation est en cours, veuillez l'annuler avant d'en faire une nouvelle.");
-            $('#sign').hide();
+            // Vérification de la signature
+            this.verifSignature();
         });
     };
 
@@ -127,6 +117,27 @@ class Signature {
             this.context.lineTo(this.clickX[i], this.clickY[i]);
             this.context.closePath(); // Fermeture du trajet
             this.context.stroke(); // Dessine le trajet
+        };
+    };
+
+    verifSignature() {
+        if (this.clickX.length === 0) {
+            console.log(this.clickX.length)
+            $('#verifSaisie').html('Vous devez signer avant de valider.');
+            $('#verifSaisie').show();
+        } else {
+            $('#verifSaisie').hide();
+            // confirmation de la réservation
+            maResa.allowResa = false;
+            maResa.confirmer();
+
+            // lancement du chrono
+            let monChrono = new Chrono(minGlobal, secGlobal);
+            monChrono.initialisation();
+
+            // On bloque la signature
+            $('#detailsStation').html("Une réservation est en cours, veuillez l'annuler avant d'en faire une nouvelle.");
+            $('#sign').hide();
         };
     };
 };
