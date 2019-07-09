@@ -55,7 +55,7 @@ class details {
             maResa.nom = $('#nom').val();
             maResa.stockeInfos();
             // Lancement du canvas
-            new Signature();
+            maSignature.initialisation();
         };
     };
 };

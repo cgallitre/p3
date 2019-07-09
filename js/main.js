@@ -4,6 +4,7 @@ const secGlobal = 0; // secondes
 
 // Création de la réservation
 const maResa = new Reservation();
+const maSignature = new Signature();
 
 // Appel de la fonction principale
 window.addEventListener("load", initialisation, false);

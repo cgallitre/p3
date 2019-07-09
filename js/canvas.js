@@ -4,14 +4,12 @@ class Signature {
     constructor() {
         // on récupère l'élément HTML Canvas
         this.canvas = document.getElementById("signature");
-        this.context;
+        this.context = new Object();
         // Variables pour mémoriser les positions des points dans différents tableaux
         this.clickX = new Array; // position en abscisse
         this.clickY = new Array; // position en ordonnée
         this.clickDrag = new Array; // le point est-t-il lié au précédent ?
         this.paint = false; // Le bouton de la souris est-il enfoncé ?
-        this.nb = 0;
-        this.initialisation();
     };
 
     initialisation() {
@@ -80,8 +78,6 @@ class Signature {
 
         // Bouton valider
         $('#ok').on('click', () => {
-            this.nb++;
-            console.log(this.nb);
             // Vérification de la signature
             this.verifSignature();
         });
@@ -117,11 +113,10 @@ class Signature {
     };
 
     verifSignature() {
-        if (this.clickX.length === 0) {
+        if (this.clickX.length < 5) {
 
             $('#verifSaisie').html('Vous devez signer avant de valider.');
             $('#verifSaisie').show();
-            this.effaceSignature();
 
         } else {
            
