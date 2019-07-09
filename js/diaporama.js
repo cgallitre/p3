@@ -29,14 +29,12 @@ class Diaporama {
         $('#slider').hover(
             () => {
                 clearTimeout(this.boucleDiapo);
-                // this.executeClavier();
                 $('#right-arrow').css('display', 'inline-block');
                 $('#left-arrow').css('display', 'inline-block');
             },
             () => {
                 $('#right-arrow').css('display', 'none');
                 $('#left-arrow').css('display', 'none');
-                // $(document).off('keyup');
                 this.finSouris = true;
                 this.executeDiaporama();
             }
