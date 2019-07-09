@@ -6,11 +6,11 @@ class Signature {
         this.canvas = document.getElementById("signature");
         this.context;
         // Variables pour mémoriser les positions des points dans différents tableaux
-        this.clickX = new Array(); // position en abscisse
-        this.clickY = new Array(); // position en ordonnée
-        this.clickDrag = new Array(); // le point est-t-il lié au précédent ?
+        this.clickX = new Array; // position en abscisse
+        this.clickY = new Array; // position en ordonnée
+        this.clickDrag = new Array; // le point est-t-il lié au précédent ?
         this.paint = false; // Le bouton de la souris est-il enfoncé ?
-
+        this.nb = 0;
         this.initialisation();
     };
 
@@ -20,10 +20,9 @@ class Signature {
             // Le navigateur est compatible : on récupère le contexte en 2D
             this.context = this.canvas.getContext('2d');
             // On efface tout
-            this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
+            this.effaceSignature();
             // On active la gestion des événements
             this.gestionEvenements();
-
         } else {
             // Navigateur ne supporte pas le canvas
             $('#confirmation').html("Votre navigateur est trop ancien pour réaliser une réservation.")
@@ -76,16 +75,13 @@ class Signature {
 
         // Bouton effacer
         $('#clear').on('click', () => {
-            // Efface le canvas
-            this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
-            // Supprime la liste des points mémorisés
-            this.clickX = [];
-            this.clickY = [];
-            this.clickDrag = [];
+            this.effaceSignature();
         });
 
         // Bouton valider
         $('#ok').on('click', () => {
+            this.nb++;
+            console.log(this.nb);
             // Vérification de la signature
             this.verifSignature();
         });
@@ -122,10 +118,13 @@ class Signature {
 
     verifSignature() {
         if (this.clickX.length === 0) {
-            console.log(this.clickX.length)
+
             $('#verifSaisie').html('Vous devez signer avant de valider.');
             $('#verifSaisie').show();
+            this.effaceSignature();
+
         } else {
+           
             $('#verifSaisie').hide();
             // confirmation de la réservation
             maResa.allowResa = false;
@@ -139,5 +138,14 @@ class Signature {
             $('#detailsStation').html("Une réservation est en cours, veuillez l'annuler avant d'en faire une nouvelle.");
             $('#sign').hide();
         };
+    };
+
+    effaceSignature() {
+        // Efface le canvas
+        this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
+        // Supprime la liste des points mémorisés
+        this.clickX = [];
+        this.clickY = [];
+        this.clickDrag = [];
     };
 };
