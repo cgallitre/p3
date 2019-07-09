@@ -22,9 +22,7 @@ class Chrono {
             sessionStorage.setItem('timerSec', this.sec);
         }, 1000);
 
-        $('#annuler').on('click', () => {
-            this.annulation();
-        });
+        $('#annuler').on('click', () => this.annulation());
     };
 
     // Réservation échue ou clic sur annuler
@@ -39,12 +37,9 @@ class Chrono {
 
     // Affiche réservation
     affichageResa() {
-        let chiffreEnPlus;
-        if (this.sec < 10){
-                chiffreEnPlus=`0`;
-            } else {
-                chiffreEnPlus=``;
-        };
+        // condition pour afficher un 0 pour les secondes < 10
+        const chiffreEnPlus = this.sec < 10 ? `0` : ``;
+        // Affichage
         $('#messageConfirmation').html(`
             Vélo réservé à la station 
             ${sessionStorage.getItem('station')} par 
@@ -53,4 +48,4 @@ class Chrono {
             Temps restant : ${this.min}m${chiffreEnPlus}${this.sec}s.
         `);
     };
-}
+};
