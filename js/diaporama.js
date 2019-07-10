@@ -19,31 +19,40 @@ class Diaporama {
 
     // Boucle principale du diaporama
     executeDiaporama() {
+
         // Passage à la diapo suivante
         if (this.finSouris === false){
             this.diapoSuivante();
         };
         this.finSouris = false;
+
         // lecture en boucle
         this.boucleDiapo = setTimeout(() => this.executeDiaporama(), this.duree);
     };
 
     // Gestion de la souris : on stoppe si au-dessus du diapo
     executeSouris() {
+
         // Passage en manuel si pointeur sur le slider
         $('#slider').hover(
             () => {
                 clearTimeout(this.boucleDiapo);
+                // Affiche les commandes de passage de diapos
                 $('#right-arrow').css('display', 'inline-block');
                 $('#left-arrow').css('display', 'inline-block');
             },
             () => {
+
+                // Masque les commandes de passage de diapos
                 $('#right-arrow').css('display', 'none');
                 $('#left-arrow').css('display', 'none');
                 this.finSouris = true;
+
+                // Relance l'exécution automatique
                 this.executeDiaporama();
             }
         );
+
         // Gestion de la souris
         $('#left-arrow').click(() => this.diapoPrecedente());
         $('#right-arrow').click(() => this.diapoSuivante());
@@ -51,15 +60,23 @@ class Diaporama {
 
     // Gestion du clavier
     executeClavier() {
-        $(document).keyup((e) => { // action au relâchement d'une touche
+        
+        // action au relâchement d'une touche
+        $(document).keyup((e) => {
             switch (e.keyCode) {
-                case 37: // Flèche gauche
+
+                // Flèche gauche
+                case 37: 
                     this.diapoPrecedente();
                     break;
-                case 39: // Flèche droite
+
+                // Flèche droite    
+                case 39: 
                     this.diapoSuivante();
                     break;
-                default : // rien à faire pour les autres touches
+
+                // rien à faire pour les autres touches    
+                default : 
                     break;
             };
         });
@@ -71,7 +88,11 @@ class Diaporama {
         if (this.imageEnCours === -1) {
             this.imageEnCours = this.tableau.length - 1;
         };
+
+        // On récupère l'image dans le tableau (position 0)
         this.image.src = this.rep + this.tableau[this.imageEnCours][0];
+
+        // On récupère la légende dans le tableau (position 1)
         this.legende.innerHTML = this.tableau[this.imageEnCours][1];
     };
 

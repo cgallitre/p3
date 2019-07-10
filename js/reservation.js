@@ -14,5 +14,5 @@ class Reservation {
 
     confirmer(){
         sessionStorage.setItem('allowResa', this.allowResa);
-    }
+    };
 };

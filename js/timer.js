@@ -17,6 +17,7 @@ class Chrono {
             } else {
                 this.sec--;
             };
+
             // Conservation des données du timer
             sessionStorage.setItem('timerMin', this.min);
             sessionStorage.setItem('timerSec', this.sec);
@@ -37,8 +38,10 @@ class Chrono {
 
     // Affiche réservation
     affichageResa() {
+
         // condition pour afficher un 0 pour les secondes < 10
         const chiffreEnPlus = this.sec < 10 ? `0` : ``;
+        
         // Affichage
         $('#messageConfirmation').html(`
             Vélo réservé à la station 

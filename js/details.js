@@ -9,8 +9,10 @@ class details {
     };
 
     initialisation() {
+
         // masque la vérif saisir éventuelle
         $('#verifSaisie').hide();
+
         // Affiche le détail d'une station
         $('#detailsStation').html(`
                 ${this.nom} --> ${this.status}<br>
@@ -19,6 +21,7 @@ class details {
                 Vélos disponibles : ${this.dispo}<br>
                 Emplacements libres : ${this.libre}
            `);
+
         // On affiche le formulaire de réservation
         this.afficherResa();
     };
@@ -26,13 +29,18 @@ class details {
     afficherResa() {
         if (this.status === "OPEN" && this.dispo > 0) {
             $('#formResa').show();
+
             // On affiche les infos déjà présentes
             $('#nom').val(localStorage.getItem('nom'));
             $('#prenom').val(localStorage.getItem('prenom'));
 
             // Clic sur réserver
             $('#reserver').on('click', (e) => {
-                e.preventDefault(); // annuler l'envoi des données
+
+                // annuler l'envoi des données
+                e.preventDefault(); 
+
+                // Lance la vérification de la saisie
                 this.verifSaisie(e);
             });
 
@@ -42,18 +50,24 @@ class details {
     };
 
     verifSaisie(e) {
+
+        // Saisie incompète
         if ($('#nom').val() === '' || $('#prenom').val() === '') {
             $('#verifSaisie').html('Merci de renseigner complètement le formulaire avant de réserver.');
             $('#verifSaisie').show();
         } else {
+
+            // Saisie OK    
             $('#verifSaisie').hide();
             $('#formResa').hide();
             $('#sign').show();
+
             // Enregistrement des données de la réservation
             maResa.station = this.nom;
             maResa.prenom = $('#prenom').val();
             maResa.nom = $('#nom').val();
             maResa.stockeInfos();
+            
             // Lancement du canvas
             maSignature.initialisation();
         };
