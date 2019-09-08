@@ -6,6 +6,7 @@ class Chrono {
     };
 
     initialisation() {
+        this.affichageResa();
         $('#annuler').show();
         this.timer = window.setInterval( () => {
             this.affichageResa();
@@ -22,7 +23,7 @@ class Chrono {
             sessionStorage.setItem('timerMin', this.min);
             sessionStorage.setItem('timerSec', this.sec);
         }, 1000);
-
+        $('#annuler').show();
         $('#annuler').on('click', () => this.annulation());
     };
 
@@ -39,9 +40,9 @@ class Chrono {
     // Affiche réservation
     affichageResa() {
 
-        // condition pour afficher un 0 pour les secondes < 10
-        const chiffreEnPlus = this.sec < 10 ? `0` : ``;
-        
+        // condition ternaire pour afficher un 0 pour les secondes < 10
+        const chiffreEnPlus = this.sec < 10 ? `0` : ``; 
+
         // Affichage
         $('#messageConfirmation').html(`
             Vélo réservé à la station 

@@ -51,7 +51,7 @@ class details {
 
     verifSaisie(e) {
 
-        // Saisie incompète
+        // Saisie incomplète
         if ($('#nom').val() === '' || $('#prenom').val() === '') {
             $('#verifSaisie').html('Merci de renseigner complètement le formulaire avant de réserver.');
             $('#verifSaisie').show();

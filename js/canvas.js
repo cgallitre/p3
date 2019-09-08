@@ -143,7 +143,7 @@ class Signature {
     };
 
     verifSignature() {
-        if (this.clickX.length < 5) {
+        if (this.clickX.length < 10) {
             $('#verifSaisie').html('Vous devez signer avant de valider.');
             $('#verifSaisie').show();
         } else {         

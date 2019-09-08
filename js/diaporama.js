@@ -6,8 +6,8 @@ class Diaporama {
         this.rep = rep;
         this.imageEnCours = -1;
         this.duree = duree;
-        this.boucleDiapo = 0;
-        this.finSouris = false;
+        this.boucleDiapo = 0; // Identifiant de la boucle du diaporama
+        this.finSouris = false; // pointeur sur la diaporama ou non
     };
 
     // initialise le diaporama avec toutes les méthodes

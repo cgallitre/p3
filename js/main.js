@@ -34,7 +34,7 @@ function initialisation() {
     // Vérification de l'existence d'une réservation
     if (sessionStorage.getItem('allowResa') === 'false') {
 
-        // Réservation existante : on lance le chrono en récupérant les valeurs temps
+        // Réservation existante : on créé le chrono en récupérant les valeurs temps
         let monChrono = new Chrono(sessionStorage.getItem('timerMin'), sessionStorage.getItem('timerSec'));
 
         // Lance le chrono
